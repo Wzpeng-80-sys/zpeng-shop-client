@@ -16,12 +16,19 @@ export default [
         props:(route) => ({keyword3:route.params.keyword,keyword4:route.query.keyword2})
     },
     {
+        name:'register', 
         path: '/register',
-        component:Register
+        component: Register,
+        meta: {
+            isHideFooter:true
+        }
     },
     {
         path: '/login',
-        component:Login
+        component: Login,
+        meta: {
+            isHideFooter:true
+        }
     },
     
 ]
