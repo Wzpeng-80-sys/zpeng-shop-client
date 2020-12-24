@@ -50,7 +50,7 @@ export default {
         toSearch(event){
             const target = event.target
             console.dir(target)
-            const {categoryList,category1id,category2id,category3id} = target.dataset;
+            const {categoryname,category1id,category2id,category3id} = target.dataset;
 
             if(categoryname){
                 const query = {
@@ -68,6 +68,7 @@ export default {
                     name:'search',
                     query
                 })
+
             }
             
         }
