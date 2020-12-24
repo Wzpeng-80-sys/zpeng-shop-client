@@ -7,11 +7,11 @@
 
 import ajax from './ajax'
 
-export function getCategoryList() {
+export function reqCategoryList() {
     // return ajax.get('/product/getBaseCategoryList')
     // return ajax('/product/getBaseCategoryList')
     return ajax({
         url: '/product/getBaseCategoryList',
-        method:'get'
+        // method:'get'
     })
 }
