@@ -13,23 +13,25 @@
                     <a href="###">秒杀</a>
                 </nav>
                 <div class="sort">
-                    <div class="all-sort-list2" @click="toSearch">
-                        <div class="item" v-for="c1 in categoryList" :key='c1.categoryId'>
+                    <div class="all-sort-list2">
+                        <div class="item">
                             <h3>
                                 <!-- <a @click="$router.push(`/search?categoryName=${c1.categoryName}&category1Id=${c1.categoryId}`)">{{c1.categoryName}}</a> -->
-                                <a href="javascript:" :data-categoryName="c1.categoryName" :data-category1Id='c1.categoryId'>{{c1.categoryName}}</a>
+                                <!-- <a href="javascript:" :data-categoryName="c1.categoryName" :data-category1Id='c1.categoryId'>{{c1.categoryName}}</a> -->
+                                <a href=""></a>
                             </h3>
                             <div class="item-list clearfix">
                                 <div class="subitem">
-                                    <dl class="fore" v-for="c2 in c1.categoryChild" :key='c2.categoryId'>
+                                    <dl class="fore" >
                                         <dt>
                                             <!-- <a @click="$router.push(`/search?categoryName=${c2.categoryName}&category2Id=${c2.categoryId}`)">{{c2.categoryName}}</a> -->
-                                            <a href="javascript:" :data-categoryName='c2.categoryName' :data-category2Id='c2.categoryId'>{{c2.categoryName}}</a>
+                                            <a href="javascript:" >{{c2.categoryName}}</a>
                                         </dt>
                                         <dd>
-                                            <em v-for="c3 in c2.categoryChild" :key="c3.categoryId">
+                                            <em >
+                                                <a href=""></a>
                                                 <!-- <a @click="$router.push(`/search?categoryName=${c3.categoryName}&category3Id=${c3.categoryId}`)">{{c3.categoryName}}</a> -->
-                                                <a href="javascript:" :data-categoryName='c3.categoryName' :data-category3Id='c3.categoryId'>{{c3.categoryName}}</a>
+                                                <!-- <a href="javascript:" :data-categoryName='c3.categoryName' :data-category3Id='c3.categoryId'>{{c3.categoryName}}</a> -->
                                             </em>
                                         </dd>
                                     </dl>
@@ -38,48 +40,15 @@
                         </div>
                     </div>
                 </div>
+                
             </div>
         </div> 
 </template>
 
 <script>
-import { mapState } from 'vuex'
+
 export default {
     name: 'TypeNav',
-    methods:{
-        toSearch(event){
-            const target = event.target
-            console.dir(target)
-            const {categoryList,category1id,category2id,category3id} = target.dataset;
-
-            if(categoryname){
-                const query = {
-                    categoryName:categoryname
-                }
-                if(category1id){
-                    query.category1Id = category1id
-                }else if(category2id){
-                    query.category2Id = category2id
-                }else if(category3id){
-                    query.category3Id = category3id
-                }
-
-                this.$router.push({
-                    name:'search',
-                    query
-                })
-            }
-            
-        }
-    },
-    computed:{
-        // categoryList(){
-        //     return this.$store.state.home.categoryList;
-        // }
-        ...mapState({
-            categoryList:state => state.home.categoryList
-        })
-    }
 }
 </script>
 

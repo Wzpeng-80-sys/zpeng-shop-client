@@ -1,8 +1,8 @@
-import Home from '@/pages/Home'
-import Login from '@/pages/Login'
-import Search from '@/pages/Search'
-import Register from '@/pages/Register'
-// import { search } from 'core-js/fn/symbol'
+import Home from '../pages/Home'
+import Login from '../pages/Login'
+import Register from '../pages/Register'
+import Search from '../pages/Search'
+
 
 export default [
     {
@@ -10,25 +10,22 @@ export default [
         component:Home
     },
     {
+        path: '/login',
+        component:Login
+    },
+    {
+        path: '/register',
+        component:Register
+    },
+    {
         name:'search',
         path: '/search/:keyword?',
         component: Search,
-        props:(route) => ({keyword3:route.params.keyword,keyword4:route.query.keyword2})
+        props:(route)=>({keyword3:route.params.keyword,keyword4:route.query.keyword2})
     },
     {
-        name:'register', 
-        path: '/register',
-        component: Register,
-        meta: {
-            isHideFooter:true
-        }
-    },
-    {
-        path: '/login',
-        component: Login,
-        meta: {
-            isHideFooter:true
-        }
-    },
-    
+        path: '/',
+        redirect:Home
+    }
+
 ]

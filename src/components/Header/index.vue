@@ -54,24 +54,22 @@ export default {
     },
     methods:{
         search(){
-
-        
-            // this.$router.push('/search')
-
-            const location= {
-                name:'search',
-            } 
+            const location = {
+                name:'search'
+            }
             if(this.keyword){
-                location.params={
+                location.params = {
                     keyword:this.keyword
                 },
-                location.query={
+                location.query = {
                     keyword2:this.keyword.toUpperCase()
                 }
             }
+
             this.$router.push(location)
         }
     }
+
 }
 </script>
 
