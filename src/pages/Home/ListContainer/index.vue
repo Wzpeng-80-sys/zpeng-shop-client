@@ -3,27 +3,18 @@
             <div class="sortList clearfix">
                 <div class="center">
                     <!--banner轮播-->
-                    <div class="swiper-container" id="mySwiper">
+                    <div :options="swiperOptions">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <img src="./images/banner1.jpg" />
-                            </div>
-                            <!-- <div class="swiper-slide">
-                                <img src="./images/banner2.jpg" />
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./images/banner3.jpg" />
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="./images/banner4.jpg" />
-                            </div> -->
+                            <swiper-slide v-for=" banner in bannerList" :key="banner.id">
+                                <img :src="banner.imageUrl" style="width:100%; height:464px;"/>
+                            </swiper-slide>
                         </div>
                         <!-- 如果需要分页器 -->
-                        <div class="swiper-pagination"></div>
+                        <div class="swiper-pagination" slot="pagination"></div>
 
                         <!-- 如果需要导航按钮 -->
-                        <div class="swiper-button-prev"></div>
-                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev" slot="button-prev"></div>
+                        <div class="swiper-button-next" slot="button-next"></div>
                     </div>
                 </div>
                 <div class="right">
@@ -110,8 +101,34 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
     name: 'ListContainer',
+    data() {
+        return {
+            swiperOptions:{
+                loop:true,
+                autoplay:{
+                    delay:4000,
+                    disableOnInteraction:false,
+                },
+                pagination:{
+                    el:'.swiper-pagination',
+                },
+                navigation:{
+                    nextEl:'.swiper-button-next',
+                    prevEl:'.swiper-button-prev'
+                }
+            }
+        }
+    },
+
+    computed:{
+        ...mapState({
+            bannerList:state => state.home.bannerList
+        })
+    }
 }
 </script>
 

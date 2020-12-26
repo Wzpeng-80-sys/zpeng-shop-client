@@ -1,20 +1,11 @@
 <template>
     <div class="type-nav">
             <div class="container">
-                <h2 class="all">全部商品分类</h2>
-                <nav class="nav">
-                    <a href="###">服装城</a>
-                    <a href="###">美妆馆</a>
-                    <a href="###">尚品汇超市</a>
-                    <a href="###">全球购</a>
-                    <a href="###">闪购</a>
-                    <a href="###">团购</a>
-                    <a href="###">有趣</a>
-                    <a href="###">秒杀</a>
-                </nav>
-                <div class="sort">
+                <div @mouseleave="hideFirst" @mouseenter="showFirst"                                              >
+                    <h2 class="all">全部商品分类</h2>
+                    <div class="sort" v-show="isShowFirst">
                     <div class="all-sort-list2" @click="toSearch">
-                        <div class="item" v-for="c1 in categoryList" :key='c1.categoryId'>
+                        <div class="item" v-for="(c1,index) in categoryList" :key='c1.categoryId' :class='{active:currentIndex === index}' @mouseenter='showSubList(index)'>
                             <h3>
                                 <!-- <a @click="$router.push(`/search?categoryName=${c1.categoryName}&category1Id=${c1.categoryId}`)">{{c1.categoryName}}</a> -->
                                 <a href="javascript:" :data-categoryName="c1.categoryName" :data-category1Id='c1.categoryId'>{{c1.categoryName}}</a>
@@ -38,15 +29,77 @@
                         </div>
                     </div>
                 </div>
+                </div>
+                <nav class="nav">
+                    <a href="###">服装城</a>
+                    <a href="###">美妆馆</a>
+                    <a href="###">尚品汇超市</a>
+                    <a href="###">全球购</a>
+                    <a href="###">闪购</a>
+                    <a href="###">团购</a>
+                    <a href="###">有趣</a>
+                    <a href="###">秒杀</a>
+                </nav>
+                
             </div>
         </div> 
 </template>
 
 <script>
 import { mapState } from 'vuex'
+import throttle from 'lodash/throttle'
+
 export default {
     name: 'TypeNav',
+    data() {
+        console.log('data()')
+        const path = this.$route.path
+        return {
+            isShowFirst:path ==='/',
+            currentIndex: -2
+        }
+    },
+
+    beforeCreate(){
+        console.log('beforeCreate()')
+    },
+/*     created(){
+        const path = this.$route.path
+        if(path === '/'){
+            this.isShowFirst = true
+        }
+    }, */
+
+/*    mounted(){
+        const path = this.$route.path
+        if(path==='/'){
+            if(path==='/'){
+                this.isShowFirst = true
+            }
+        }
+    }, */
+
     methods:{
+
+        hideFirst(){
+            this.currentIndex=-2
+            if(this.$route.path !== '/'){
+                this.isShowFirst = false
+            }
+        },
+
+        showFirst(){
+            this.currentIndex = -1
+            this.isShowFirst = true
+        },
+
+        showSubList:throttle(function(index) {
+            // this.currentIndex = index;
+            if(this.currentIndex!==-2){
+                this.currentIndex = index
+            }
+        },500, { 'trailing': true }),
+        
         toSearch(event){
             const target = event.target
             console.dir(target)
@@ -64,10 +117,18 @@ export default {
                     query.category3Id = category3id
                 }
 
-                this.$router.push({
+                /* this.$router.push({
                     name:'search',
                     query
-                })
+                }) */
+
+                const location = {
+                    name:'search',
+                    query,
+                    params:this.$route.params
+                }
+
+                this.$router.push(location)
 
             }
             
@@ -124,6 +185,14 @@ export default {
                 position: absolute;
                 background: #fafafa;
                 z-index: 999;
+
+                &.slide-ender-active, &.slide-leave-active{
+                    transition: all .3s;
+                }
+                &.slide-enter,&.slide-leave-to{
+                    opacity: 0;
+                    height: 0;
+                }
 
                 .all-sort-list2 {
                     .item {
@@ -194,7 +263,8 @@ export default {
                             }
                         }
 
-                        &:hover {
+                        &.active {
+                            background:#ccc;
                             .item-list {
                                 display: block;
                             }

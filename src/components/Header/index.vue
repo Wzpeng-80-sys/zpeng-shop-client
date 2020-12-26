@@ -36,8 +36,8 @@
                 
                 <div class="searchArea">
                     <form action="###" class="searchForm">
-                        <input type="text" id="autocomplete" class="input-error input-xxlarge" v-model="keyword"/>
-                        <button class="sui-btn btn-xlarge btn-danger" type="button" @click="search">搜索</button>
+                        <input type="text" id="autocomplete" class="input-error input-xxlarge" v-model.trim="keyword"/>
+                        <button class="sui-btn btn-xlarge btn-danger" type="button" @click.prevent="search">搜索</button>
                     </form>
                 </div>
             </div>
@@ -60,13 +60,12 @@ export default {
 
             const location= {
                 name:'search',
+                query:this.$route.query
+
             } 
             if(this.keyword){
                 location.params={
                     keyword:this.keyword
-                },
-                location.query={
-                    keyword2:this.keyword.toUpperCase()
                 }
             }
             this.$router.push(location)
