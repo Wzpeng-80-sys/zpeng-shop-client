@@ -17,7 +17,7 @@
       <div class="fl value">
         <ul class="type-list">
           <li v-for="value in item.attrValueList" :key="value"
-          @click="$emit('addProp',`${item.attrId}:${value}:${item.attrName}`)"
+          @click="$emit('addProp',`${item.attrId}:${value}:${item.attrName}`)"  
           >
             <a>{{value}}</a>
           </li>
