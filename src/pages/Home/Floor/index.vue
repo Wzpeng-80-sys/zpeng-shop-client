@@ -23,13 +23,13 @@
                             </div>
                             <div class="floorBanner">
                                 <swiper :options="swiperOptions">
-                                <swiper-slide v-for="item in floor.carouselList" :key="item.id">
-                                    <img :src="item.imageUrl"/>
-                                </swiper-slide>
+                                    <swiper-slide v-for="item in floor.carouselList" :key="item.id">
+                                        <img :src="item.imageUrl"/>
+                                    </swiper-slide>
                                 <div class="swiper-pagination" slot="pagination"></div>
                                 <div class="swiper-button-prev" slot="button-prev"></div>
                                 <div class="swiper-button-next" slot="button-next"></div>
-                </swiper>
+                                </swiper>
                             </div>
                             <div class="split">
                                 <span class="floor-x-line"></span>

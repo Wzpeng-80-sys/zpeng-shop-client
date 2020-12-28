@@ -12,13 +12,13 @@ const mutations = {
         state.categoryList = categoryList.splice(0,15)
     },
     RECEIVE_BANNER_LIST(state, bannerList) {
-        state.bannerList = bannerList.splice(0,15)
+        state.bannerList = bannerList
     },
     RECEIVE_FLOORS(state, floors) {
-        state.floors = floors.splice(0,15)
+        state.floors = floors
     },
     RECEIVE_RECOMMENDS(state, recommends) {
-        state.recommends = recommends.splice(0,15)
+        state.recommends = recommends
     },
 }
 
@@ -41,7 +41,7 @@ const actions = {
     },
     async getFloors({ commit }) {
         const result = await reqFloors()
-
+        console.log(234);
         if (result.code === 200) {
             const floors = result.data
             commit('RECEIVE_FLOORS',floors)
@@ -55,7 +55,6 @@ const actions = {
             commit('RECEIVE_RECOMMENDS',recommends)
         }
     },
-    
 }
 
 const getters = {

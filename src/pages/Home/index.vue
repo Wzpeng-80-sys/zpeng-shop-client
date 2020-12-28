@@ -29,7 +29,7 @@ export default {
     },
     computed:{
         ...mapState({
-            Floors:state => state.home.floors
+            floors:state => state.home.floors
         })
     },
     components:{

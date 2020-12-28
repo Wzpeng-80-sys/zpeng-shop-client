@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 
 import home from './moudles/home'
 import user from './moudles/user'
+import search from './moudles/search'
 
 Vue.use(Vuex)
 const mutations = {}
@@ -17,6 +18,7 @@ export default new Vuex.Store({
     getters,
     modules: {
         home,
-        user
+        user,
+        search
     }
 })

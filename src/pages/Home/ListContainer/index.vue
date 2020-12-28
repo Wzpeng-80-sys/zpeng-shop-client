@@ -3,19 +3,19 @@
             <div class="sortList clearfix">
                 <div class="center">
                     <!--banner轮播-->
-                    <div :options="swiperOptions">
-                        <div class="swiper-wrapper">
+                    <swiper :options="swiperOptions">
+                        <!-- <div class="swiper-wrapper"> -->
                             <swiper-slide v-for=" banner in bannerList" :key="banner.id">
                                 <img :src="banner.imageUrl" style="width:100%; height:464px;"/>
                             </swiper-slide>
-                        </div>
+                        <!-- </div> -->
                         <!-- 如果需要分页器 -->
                         <div class="swiper-pagination" slot="pagination"></div>
 
                         <!-- 如果需要导航按钮 -->
                         <div class="swiper-button-prev" slot="button-prev"></div>
                         <div class="swiper-button-next" slot="button-next"></div>
-                    </div>
+                    </swiper>
                 </div>
                 <div class="right">
                     <div class="news">
